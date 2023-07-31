@@ -1,4 +1,3 @@
-<!-- ChartsPage.vue -->
 <template>
   <div class="home-container">
     <h1>Pokémon Weights Chart</h1>
@@ -21,11 +20,9 @@ export default defineComponent({
 
     onMounted(async () => {
       try {
-        // Obter os dados dos três primeiros Pokémon da API
         const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=15');
         const pokemonData = response.data.results;
 
-        // Extrair os nomes e pesos dos Pokémon
         const pokemonNames = pokemonData.map((pokemon: any) => pokemon.name);
         const pokemonWeights = await Promise.all(
           pokemonData.map(async (pokemon: any) => {
@@ -34,7 +31,6 @@ export default defineComponent({
           })
         );
 
-        // Criar o gráfico usando o Chart.js
         if (chartCanvas.value) {
           new Chart(chartCanvas.value, {
             type: 'bar',
@@ -79,9 +75,8 @@ export default defineComponent({
 
   methods: {
       goToChartsPage() {
-      // Navegar para a página "/charts" usando o método window.location.href
-      window.location.href = '/';
-    },
+        window.location.href = '/';
+      },
   }
 });
 </script>
@@ -91,10 +86,10 @@ export default defineComponent({
   background-color: #e1f5fe;
   min-height: 100vh;
   padding: 20px;
-  display: flex; /* Usamos flexbox para alinhar o conteúdo horizontalmente */
-  justify-content: center; /* Centraliza o conteúdo horizontalmente */
-  align-items: center; /* Centraliza o conteúdo verticalmente */
-  flex-direction: column; /* Alinha o conteúdo em coluna para centralizar a barra de pesquisa acima */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .chart-container {
   width: 100%;
