@@ -24,8 +24,6 @@
     </ul>
     <p v-else>Nenhum Pokémon encontrado.</p>
     </div>
-
-    <!-- Exibir os detalhes do Pokémon selecionado -->
      <div v-if="showModal" class="pokemon-details">
       <PokemonModal :pokemon="selectedPokemon" @close="closeModal" />
     </div>
@@ -63,19 +61,14 @@ export default defineComponent({
       showModal.value = false;
     };
 
-
-    
     const filteredPokemons = ref<Pokemon[]>([]);
     const searchPokemon = () => {
       if (searchQuery.value.trim() === '') {
-        // Caso a pesquisa esteja vazia, limpe os resultados
         filteredPokemons.value = [];
       } else {
-        // Filtrar os pokémons com base na pesquisa atual
         const query = searchQuery.value.toLowerCase();
         filteredPokemons.value = pokemons.filter((pokemon) => {
           if (searchType.value === 'name') {
-            // Filtrar os Pokémon cujo nome começa com a letra digitada (em ordem)
             return pokemon.name.toLowerCase().startsWith(query);
           } else {
             return pokemon.id === parseInt(query);
@@ -86,20 +79,17 @@ export default defineComponent({
 
     const selectPokemon = (pokemon: Pokemon) => {
       selectedPokemon.value = pokemon;
-      showModal.value = true; // Abrir a modal quando o Pokémon é selecionado
+      showModal.value = true;
 
     };
 
-    // Função para buscar todos os pokémons
     const fetchAllPokemons = async () => {
       try {
         const response = await axios.get('https://pokeapi.co/api/v2/pokemon');
         const pokemonData = response.data.results;
 
-        // Limpar a lista de pokémons antes de adicionar os novos resultados
         pokemons.splice(0, pokemons.length);
 
-        // Extrair os nomes e imagens dos Pokémon
         await Promise.all(
           pokemonData.map(async (pokemon: any) => {
             const res = await axios.get(pokemon.url);
@@ -115,13 +105,10 @@ export default defineComponent({
         );
       } catch (error) {
         console.error('Erro ao buscar dados dos Pokémon:', error);
-        // Limpar a lista de pokémons em caso de erro
         pokemons.splice(0, pokemons.length);
       }
     };
     
-
-    // Buscar todos os pokémons inicialmente
     fetchAllPokemons();
 
     return {
@@ -140,22 +127,18 @@ export default defineComponent({
   data() {
     return {
       selectedPokemon: null as Pokemon | null,
-      // Certifique-se de que filteredPokemons está definido corretamente como uma lista vazia
       filteredPokemons: [] as Pokemon[],
     };
   },
 
   methods: {
-    // Método para selecionar o Pokémon e exibir seus detalhes
     selectPokemon(pokemon: Pokemon) {
-      // Atualizar o Pokémon selecionado apenas se o objeto for válido
       if (pokemon) {
         this.selectedPokemon = pokemon;
       }
     },
 
     goToChartsPage() {
-      // Navegar para a página "/charts" usando o método window.location.href
       window.location.href = '/charts';
     },
   },
@@ -197,10 +180,10 @@ export default defineComponent({
   background-color: #e1f5fe;
   min-height: 100vh;
   padding: 20px;
-  display: flex; /* Usamos flexbox para alinhar o conteúdo horizontalmente */
-  justify-content: center; /* Centraliza o conteúdo horizontalmente */
-  align-items: center; /* Centraliza o conteúdo verticalmente */
-  flex-direction: column; /* Alinha o conteúdo em coluna para centralizar a barra de pesquisa acima */
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  flex-direction: column;
 }
 .center-container {
   display: flex;
@@ -208,46 +191,41 @@ export default defineComponent({
   align-items: center;
   height: 100vh;
 }
-
 .pokemon-list {
-  display: flex; /* Exibir os pokémons em uma linha horizontal */
-  flex-wrap: wrap; /* Quebrar a linha quando não houver espaço na largura */
-  justify-content: center; /* Centralizar os pokémons horizontalmente */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-
 .pokemon-list > li {
-  flex: 0 0 150px; /* Definir a largura de cada elemento na lista */
-  margin: 10px; /* Espaçamento entre os pokémons */
-  display: flex; /* Alinhar os itens verticalmente */
-  align-items: center; /* Alinhar os itens verticalmente */
-  cursor: pointer; /* Cursor muda para indicar que o item é clicável */
+  flex: 0 0 150px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
-
 .pokemon-list img {
   width: 100px;
   height: 100px;
   margin-right: 10px;
 }
+.arrow-icon {
+  margin-left: 5px;
+  font-size: 14px;
+  color: rgb(34, 185, 72);
+}
 ul {
   list-style-type: none;
   padding: 0;
 }
-
 li {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  cursor: pointer; /* Cursor muda para indicar que o item é clicável */
+  cursor: pointer;
 }
-
 img {
   width: 50px;
   height: 50px;
   margin-right: 10px;
-}
-.arrow-icon {
-  margin-left: 5px; /* Adicione um espaçamento entre o nome do Pokémon e o ícone */
-  font-size: 14px; /* Ajuste o tamanho do ícone conforme necessário */
-  color: rgb(34, 185, 72); /* Defina a cor do ícone */
 }
 </style>

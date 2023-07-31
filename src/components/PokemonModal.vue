@@ -54,12 +54,12 @@ export default defineComponent({
 
 <style>
 .close-button {
-    padding: 10px 20px;
-    background-color: #e91e1e;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 10px 20px;
+  background-color: #e91e1e;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
   }
 .modal-overlay {
   position: fixed;
@@ -72,18 +72,15 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
 }
-
 .modal-container {
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
-
 .modal-content {
   padding: 20px;
   text-align: center;
 }
-
 .modal-content img {
   width: 100px;
   height: 100px;
@@ -97,23 +94,19 @@ export default defineComponent({
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 350px;
 }
-
 .pokemon-image {
   padding: 10px;
   flex: 0 0 150px;
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
 }
-
 .pokemon-image img {
   width: 100%;
   height: auto;
 }
-
 .pokemon-info {
   padding: 10px;
 }
-
 .pokemon-name {
   margin: 0;
   font-size: 24px;
@@ -123,26 +116,21 @@ export default defineComponent({
   padding: 8px;
   border-radius: 8px;
 }
-
 .pokemon-attributes {
   margin-top: 10px;
 }
-
 .attribute-label {
   font-weight: bold;
   color: #333;
 }
-
 .pokemon-info p {
   margin: 5px 0;
   font-size: 16px;
 }
-
 .pokemon-info ul {
   list-style: none;
   padding: 0;
 }
-
 .pokemon-info li {
   font-size: 14px;
 }

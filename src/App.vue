@@ -1,9 +1,8 @@
-<!-- App.vue -->
 <template>
   <div>
     <header>
       <router-link to="/"></router-link>
-      <router-link to="/charts"></router-link> <!-- Adicione o link para a página de gráficos -->
+      <router-link to="/charts"></router-link>
     </header>
     <main>
       <RouterView />
